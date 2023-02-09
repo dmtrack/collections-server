@@ -86,8 +86,20 @@ class UserService {
         if (!isPassEquals) {
             throw ApiError.badRequest('Неверный пароль');
         }
-        const userDto = new UserDto(user);
 
+        const userDto: IUserDto = new UserDto(user);
+
+        const tokens = await tokenCreator(userDto);
+        return { ...tokens, user: userDto };
+    }
+
+    async reconnect(id: number) {
+        const user = await User.findOne({
+            where: { id },
+            include: { model: Access },
+        });
+        const userDto: IUserDto = new UserDto(user);
+        const userDto = new UserDto(user);
         const tokens = await tokenCreator(userDto);
         return { ...tokens, user: userDto };
     }
