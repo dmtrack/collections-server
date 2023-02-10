@@ -16,9 +16,9 @@ app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
 app.use(json());
 app.use(cookieParser());
 app.use(urlencoded({ extended: true }));
-app.use('/api/user', userRouter);
-app.use('/api/collection', collectionRouter);
-app.use('/api/item', itemRouter);
+app.use('/user', userRouter);
+app.use('/collection', collectionRouter);
+app.use('/item', itemRouter);
 app.use(authMiddleware);
 
 connection
