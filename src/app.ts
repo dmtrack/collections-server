@@ -29,10 +29,9 @@ app.use('/dev', devRouter);
 connection
     .sync({ alter: true })
     .then(async () => {
-        themeCheck();
-
         deleteAllIndexes('collections');
         deleteAllIndexes('items');
+        themeCheck();
         console.log('Database synced successfully');
     })
     .catch((err) => {

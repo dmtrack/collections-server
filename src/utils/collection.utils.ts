@@ -5,16 +5,13 @@ const ItemService = require('../services/item.service');
 import mokeData from '../utils/moke.json';
 export const deleteAllIndexes = async (target: string) => {
     try {
-        fetch(
-            `https://ms-a143116390fa-3708.sfo.meilisearch.io/indexes/${target}/documents`,
-            {
-                method: 'DELETE',
-                headers: {
-                    Authorization:
-                        'Bearer 8e4b2915ac08ef93025cdb0a69c4a3b0c37fd4eb ',
-                },
-            }
-        );
+        fetch(`${process.env.MEILISEARCH_HOST}/indexes/${target}/documents`, {
+            method: 'DELETE',
+            headers: {
+                Authorization:
+                    'Bearer 8e4b2915ac08ef93025cdb0a69c4a3b0c37fd4eb ',
+            },
+        });
     } catch (e) {
         console.log(e);
     }
